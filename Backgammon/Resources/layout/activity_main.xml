@@ -1,7 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/opening_screen_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <!-- Background image -->
+    <ImageView
+        android:id="@+id/bgImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_backgammon_board"
+        android:scaleType="centerCrop" />
+
+    <!-- Optional overlay to darken background -->
+    <View
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000" /> <!-- 40% black -->
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Backgammon"
+        android:textSize="48sp"
+        android:textColor="#FFFFFF"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:fontFamily="sans-serif-light"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4" />
+
+    <!-- Button container -->
+    <LinearLayout
+        android:id="@+id/btnContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp">   <!-- 🔽 moved down by 120dp -->
+
+        <Button
+            android:id="@+id/btnSinglePlayer"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Single Player"
+            android:textSize="20sp"
+            android:layout_margin="8dp"
+            android:backgroundTint="#FFD700"
+            android:textColor="#000000" />
+
+        <Button
+            android:id="@+id/btnSettings"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:textSize="20sp"
+            android:layout_margin="8dp"
+            android:backgroundTint="#ADFF2F"
+            android:textColor="#000000" />
+
+        <Button
+            android:id="@+id/btnExit"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Exit"
+            android:textSize="20sp"
+            android:layout_margin="8dp"
+            android:backgroundTint="#FF4500"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+
 </RelativeLayout>
