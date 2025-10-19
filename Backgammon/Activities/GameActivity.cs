@@ -6,12 +6,13 @@ using Android.Graphics;
 using Android.Views;
 using System.Collections.Generic;
 using Android.Content;
+using AndroidX.AppCompat.App;
 
 namespace Backgammon
 {
     [Activity(Label = "Game", Theme = "@style/AppTheme",
         ScreenOrientation = Android.Content.PM.ScreenOrientation.Landscape)]
-    public class GameActivity : Activity
+    public class GameActivity : AppCompatActivity
     {
         FrameLayout checkerLayer;
         float layerW, layerH;
