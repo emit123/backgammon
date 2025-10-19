@@ -28,12 +28,12 @@
         android:textSize="48sp"
         android:textColor="#FFFFFF"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="sans-serif-light"
         android:shadowColor="#000000"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="4" />
+        android:shadowDx="2.0"
+        android:shadowDy="2.0"
+        android:shadowRadius="4.0" />
 
     <!-- Button container -->
     <LinearLayout
@@ -43,7 +43,7 @@
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp">   <!-- 🔽 moved down by 120dp -->
+        android:layout_marginTop="90dp">   <!-- 🔽 moved down by 120dp -->
 
         <Button
             android:id="@+id/btnSinglePlayer"
@@ -63,6 +63,17 @@
             android:textSize="20sp"
             android:layout_margin="8dp"
             android:backgroundTint="#ADFF2F"
+            android:textColor="#000000" />
+
+        <!-- 🆕 Instructions button -->
+        <Button
+            android:id="@+id/btnInstructions"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Instructions"
+            android:textSize="20sp"
+            android:layout_margin="8dp"
+            android:backgroundTint="#87CEFA"
             android:textColor="#000000" />
 
         <Button

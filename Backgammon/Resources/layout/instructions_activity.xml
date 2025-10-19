@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF8E7"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Header Row with Title + Return Button -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:text="🎲 How to Play Backgammon"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btnReturn"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/btn_return"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <!-- Introduction -->
+        <TextView
+            android:text="Backgammon is a board game for two players. Each player moves 15 checkers around the board according to dice rolls. The goal is to move all your checkers off the board before your opponent."
+            android:layout_marginBottom="12dp"
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- The Board -->
+        <TextView
+            android:text="🧩 The Board"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="The board has 24 narrow triangles called points. These points alternate in color and are divided into four areas: your home board, your outer board, your opponent’s outer board, and your opponent’s home board. A raised divider in the middle is called the bar."
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- The Checkers -->
+        <TextView
+            android:text="⚪ The Checkers"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="Each player has 15 checkers of one color. At the start of the game, they are placed in a standard starting formation, mirrored for both players.\n\nWhite moves from left to right, and Black moves from right to left."
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- The Dice -->
+        <TextView
+            android:text="🎲 The Dice"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="Each player rolls two dice per turn. Each die shows how many points you can move one checker. You can move one checker for both dice or two checkers, one per die.\n\nIf you roll a double, you play that number four times. For example, 4-4 means you have four moves of 4 points each."
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Blocked/Open Points -->
+        <TextView
+            android:text="🚫 Blocked and Open Points"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="A point is open if it has no opponent checkers or only one opponent checker. It’s blocked if it has two or more opponent checkers. You can only move to open points."
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Hitting and the Bar -->
+        <TextView
+            android:text="💥 Hitting and the Bar"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="If you land on a point with one opponent checker, you hit it. The opponent’s checker is placed on the bar and must re-enter before any other moves.\n\nTo re-enter, the player must roll a number that leads to an open point in the opponent’s home board. If no points are open, the player loses the turn."
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Bearing Off -->
+        <TextView
+            android:text="🏠 Bearing Off"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="When all your checkers are in your home board, you can start bearing off. Roll the dice and remove checkers from the points matching the dice values. If you roll higher than any occupied point, you can remove from the highest one. The first player to bear off all 15 checkers wins!"
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Strategy Tips -->
+        <TextView
+            android:text="🧠 Strategy Tips"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="• Build consecutive points to block your opponent.\n• Avoid leaving single checkers (called blots).\n• Use doubles wisely — they can change the game.\n• Hit opponent checkers only when it’s safe.\n• Plan ahead — think about where your next rolls might take you."
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Game Controls -->
+        <TextView
+            android:text="🎮 Game Controls"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="• ROLL DICE – Roll the dice for your turn.\n• Tap a Checker – Select it to move.\n• Tap a Point – Move the selected checker there if legal.\n• END TURN – End your turn after moving."
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Winning -->
+        <TextView
+            android:text="🏁 Winning the Game"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="The winner is the first player to bear off all 15 checkers from their home board."
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</ScrollView>

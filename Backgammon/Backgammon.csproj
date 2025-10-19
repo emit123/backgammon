@@ -61,7 +61,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activities\GameActivity.cs" />
+    <Compile Include="Activities\InstructionsActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
+    <Compile Include="Activities\SettingsActivity.cs" />
+    <Compile Include="Activities\TestActivity.cs" />
     <Compile Include="Helpers\BoardGeometry.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,10 +109,25 @@
   <ItemGroup>
     <Content Include="AndroidManifest.xml" />
     <AndroidResource Include="Resources\drawable\bg_backgammon_board.jpg" />
-    <AndroidResource Include="Resources\drawable\black_checker.png" />
     <AndroidResource Include="Resources\drawable\board.png" />
-    <AndroidResource Include="Resources\drawable\white_checker.png" />
     <AndroidResource Include="Resources\layout\game_activity.xml" />
+    <AndroidResource Include="Resources\drawable\black_checker.png" />
+    <AndroidResource Include="Resources\drawable\white_checker.png" />
+    <AndroidResource Include="Resources\layout\test_activity.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\end_turn.png" />
+    <AndroidResource Include="Resources\drawable\roll_dice.png" />
+    <AndroidResource Include="Resources\drawable\_1.png" />
+    <AndroidResource Include="Resources\drawable\_2.png" />
+    <AndroidResource Include="Resources\drawable\_3.png" />
+    <AndroidResource Include="Resources\drawable\_4.png" />
+    <AndroidResource Include="Resources\drawable\_5.png" />
+    <AndroidResource Include="Resources\drawable\_6.png" />
+    <AndroidResource Include="Resources\drawable\btn_return.png" />
+    <AndroidResource Include="Resources\layout\settings_activity.xml" />
+    <AndroidResource Include="Resources\layout\instructions_activity.xml" />
+    <AndroidResource Include="Resources\Menu\menu1.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -3,7 +3,9 @@ using Android.OS;
 using Android.Widget;
 using Android.Util;
 using Android.Graphics;
+using Android.Views;
 using System.Collections.Generic;
+using Android.Content;
 
 namespace Backgammon
 {
@@ -12,7 +14,7 @@ namespace Backgammon
     public class GameActivity : Activity
     {
         FrameLayout checkerLayer;
-        float layerW, layerH; // measured size
+        float layerW, layerH;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -20,29 +22,33 @@ namespace Backgammon
             SetContentView(Resource.Layout.game_activity);
 
             checkerLayer = FindViewById<FrameLayout>(Resource.Id.checkerLayer);
+            checkerLayer.LayoutDirection = Android.Views.LayoutDirection.Ltr;
 
-            // Wait until layout is ready before placing checkers
+            // Wait for layout to measure before positioning items
             checkerLayer.Post(() =>
             {
                 layerW = checkerLayer.Width;
                 layerH = checkerLayer.Height;
+
                 PlaceStartingCheckers();
+                AddTurnUI(); // 👈 draw the buttons, dice, and label
             });
         }
 
-        // Standard backgammon starting setup (indices 0–23)
+        // ---------- BOARD CHECKER SETUP ----------
         void PlaceStartingCheckers()
         {
+            // Standard backgammon setup
             var setup = new Dictionary<int, (int count, bool isWhite)>
             {
-                { 0,  (2, false) },
-                { 11, (5, true)  },
-                { 16, (3, true)  },
-                { 18, (5, false) },
-                { 23, (2, true)  },
-                { 7,  (5, false) },
-                { 12, (5, true)  },
-                { 5,  (3, false) }
+                { 0,  (2, false) },  // Black 2 (top right)
+                { 11, (5, false)  },  // White 5 (top left)
+                { 16, (3, false)  },  // White 3 (bottom left mid)
+                { 18, (5, false) },  // Black 5 (bottom right mid)
+                { 23, (2, true)  },  // White 2 (bottom right)
+                { 7,  (3, true) },  // Black 5 (top left mid)
+                { 12, (5, true)  },  // White 5 (bottom left)
+                { 5,  (5, true) }   // Black 3 (top right mid)
             };
 
             foreach (var kvp in setup)
@@ -62,21 +68,16 @@ namespace Backgammon
             checker.SetImageResource(isWhite ? Resource.Drawable.white_checker
                                              : Resource.Drawable.black_checker);
 
-            // Checker size
             int sizePx = (int)TypedValue.ApplyDimension(
-                ComplexUnitType.Dip, 48, Resources.DisplayMetrics);
+                ComplexUnitType.Dip, 42, Resources.DisplayMetrics);
 
-            var lp = new FrameLayout.LayoutParams(sizePx, sizePx);
+            var lp = new FrameLayout.LayoutParams(sizePx, sizePx)
+            {
+                Gravity = GravityFlags.Left | GravityFlags.Top
+            };
 
-            // Normalized board coordinates
             PointF center = BoardGeometry.PipCenters[pipIndex];
-
-            // Adjust horizontal range to actual board area (you can fine-tune these)
-            float boardLeft = 0.15f;  // left edge of playable board
-            float boardRight = 0.85f; // right edge of playable board
-            float boardWidth = boardRight - boardLeft;
-
-            float xPx = (boardLeft + center.X * boardWidth) * layerW;
+            float xPx = center.X * layerW;
             float yPx = center.Y * layerH;
 
             float stackOffset = BoardGeometry.StackOffsetPx(sizePx);
@@ -90,7 +91,128 @@ namespace Backgammon
             lp.LeftMargin = (int)(xPx - sizePx / 2f);
             lp.TopMargin = (int)(yPx - sizePx / 2f);
 
+            checker.SetScaleType(ImageView.ScaleType.FitXy);
             checkerLayer.AddView(checker, lp);
         }
+
+        // ---------- TURN UI CREATION ----------
+        void AddTurnUI()
+        {
+            // === Turn label ===
+            var lblTurn = new TextView(this);
+            lblTurn.Text = "Black's turn";
+            lblTurn.SetTextColor(Color.Black);
+            lblTurn.TextSize = 26;
+            lblTurn.Typeface = Typeface.DefaultBold;
+
+            var lpLabel = LayoutAt(UIPositions.TurnLabel, 0, 0);
+            checkerLayer.AddView(lblTurn, lpLabel);
+
+            // === Buttons (Roll / End Turn) ===
+            int buttonSize = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, 110, Resources.DisplayMetrics);
+            AddImageButton(Resource.Drawable.roll_dice, UIPositions.RollDice, buttonSize);
+            AddImageButton(Resource.Drawable.end_turn, UIPositions.EndTurn, buttonSize);
+
+            // === Dice (demo values 2 and 5) ===
+            int diceSize = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, 60, Resources.DisplayMetrics);
+            AddImage(Resource.Drawable._6, UIPositions.Dice1, diceSize);
+            AddImage(Resource.Drawable._5, UIPositions.Dice2, diceSize);
+        }
+
+        // ---------- HELPER METHODS ----------
+        FrameLayout.LayoutParams LayoutAt(PointF pos, int width, int height)
+        {
+            var lp = new FrameLayout.LayoutParams(
+                width == 0 ? ViewGroup.LayoutParams.WrapContent : width,
+                height == 0 ? ViewGroup.LayoutParams.WrapContent : height)
+            {
+                Gravity = GravityFlags.Left | GravityFlags.Top
+            };
+
+            lp.LeftMargin = (int)(pos.X * layerW);
+            lp.TopMargin = (int)(pos.Y * layerH);
+            return lp;
+        }
+
+        void AddImageButton(int drawableId, PointF pos, int sizePx)
+        {
+            var button = new ImageButton(this);
+            button.SetImageResource(drawableId);
+            button.SetBackgroundColor(Color.Transparent);
+            button.SetScaleType(ImageView.ScaleType.FitXy);
+
+            var lp = new FrameLayout.LayoutParams(sizePx, sizePx)
+            {
+                Gravity = GravityFlags.Left | GravityFlags.Top
+            };
+
+            lp.LeftMargin = (int)(pos.X * layerW - sizePx / 2f);
+            lp.TopMargin = (int)(pos.Y * layerH - sizePx / 2f);
+
+            checkerLayer.AddView(button, lp);
+        }
+
+        void AddImage(int drawableId, PointF pos, int sizePx)
+        {
+            var image = new ImageView(this);
+            image.SetImageResource(drawableId);
+            image.SetScaleType(ImageView.ScaleType.FitXy);
+
+            var lp = new FrameLayout.LayoutParams(sizePx, sizePx)
+            {
+                Gravity = GravityFlags.Left | GravityFlags.Top
+            };
+
+            lp.LeftMargin = (int)(pos.X * layerW - sizePx / 2f);
+            lp.TopMargin = (int)(pos.Y * layerH - sizePx / 2f);
+
+            checkerLayer.AddView(image, lp);
+        }
+
+        //Menu
+        public override bool OnCreateOptionsMenu(Android.Views.IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.menu1, menu);
+
+            return true;
+
+        }
+        public override bool OnOptionsItemSelected(Android.Views.IMenuItem item)
+
+        {
+
+            if (item.ItemId == Resource.Id.MainMenu)
+            {
+                var intent = new Intent(this, typeof(MainActivity));
+                StartActivity(intent);
+                Finish();
+
+                return true;
+
+            }
+
+            else if (item.ItemId == Resource.Id.Settings)
+            {
+                var intent = new Intent(this, typeof(SettingsActivity));
+                StartActivity(intent);
+                Finish();
+
+                return true;
+            }
+            else if (item.ItemId == Resource.Id.Restart)
+            {
+                var intent = new Intent(this, typeof(GameActivity));
+                StartActivity(intent);
+                Finish();
+
+                return true;
+            }
+
+            return base.OnOptionsItemSelected(item);
+
+        }
+        
+
     }
+
 }
