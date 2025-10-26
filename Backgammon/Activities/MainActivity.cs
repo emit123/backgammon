@@ -17,9 +17,9 @@ namespace Backgammon
             base.OnCreate(savedInstanceState);
 
             // Fullscreen
-            RequestWindowFeature(Android.Views.WindowFeatures.NoTitle);
+            /*RequestWindowFeature(Android.Views.WindowFeatures.NoTitle);
             Window.AddFlags(Android.Views.WindowManagerFlags.Fullscreen);
-            SupportActionBar?.Hide();
+            SupportActionBar?.Hide();*/
 
             SetContentView(Resource.Layout.activity_main);
 

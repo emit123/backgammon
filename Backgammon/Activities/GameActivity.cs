@@ -14,12 +14,18 @@ namespace Backgammon
         ScreenOrientation = Android.Content.PM.ScreenOrientation.Landscape)]
     public class GameActivity : AppCompatActivity
     {
+
         FrameLayout checkerLayer;
         float layerW, layerH;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            RequestWindowFeature(Android.Views.WindowFeatures.NoTitle);
+            Window.AddFlags(Android.Views.WindowManagerFlags.Fullscreen);
+            SupportActionBar?.Hide();
+
             SetContentView(Resource.Layout.game_activity);
 
             checkerLayer = FindViewById<FrameLayout>(Resource.Id.checkerLayer);

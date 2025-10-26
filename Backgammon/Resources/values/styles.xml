@@ -1,15 +1,22 @@
 <resources>
 
-	<!-- Base application theme (no action bar + fullscreen). -->
 	<style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-		<!-- Customize your theme colors -->
 		<item name="colorPrimary">@color/colorPrimary</item>
 		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 		<item name="colorAccent">@color/colorAccent</item>
 
-		<!-- Make app full screen -->
+		<!-- Fullscreen appearance -->
 		<item name="android:windowFullscreen">true</item>
 		<item name="android:windowContentOverlay">@null</item>
+	</style>
+
+
+	<style name="AppTheme.WithActionBar" parent="Theme.MaterialComponents.Light.DarkActionBar">
+		<item name="colorPrimary">@color/colorPrimary</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+		<item name="colorAccent">@color/colorAccent</item>
+		<!-- Make sure it’s not fullscreen -->
+		<item name="android:windowFullscreen">false</item>
 	</style>
 
 </resources>
