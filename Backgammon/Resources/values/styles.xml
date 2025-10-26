@@ -1,22 +1,30 @@
 <resources>
 
+	<!-- Default app theme: FULLSCREEN (used by all screens except MainActivity) -->
 	<style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
 		<item name="colorPrimary">@color/colorPrimary</item>
 		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 		<item name="colorAccent">@color/colorAccent</item>
 
-		<!-- Fullscreen appearance -->
+		<!-- Full screen for game/settings/instructions -->
 		<item name="android:windowFullscreen">true</item>
 		<item name="android:windowContentOverlay">@null</item>
 	</style>
 
-
-	<style name="AppTheme.WithActionBar" parent="Theme.MaterialComponents.Light.DarkActionBar">
+	<!-- Main menu theme: NOT fullscreen, uses a Toolbar as ActionBar -->
+	<!-- We keep NoActionBar at the theme level and attach a Toolbar in the XML, then call setSupportActionBar(toolbar). -->
+	<style name="AppTheme.NoFullscreen.WithToolbar" parent="Theme.MaterialComponents.Light.NoActionBar">
 		<item name="colorPrimary">@color/colorPrimary</item>
 		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 		<item name="colorAccent">@color/colorAccent</item>
-		<!-- Make sure it’s not fullscreen -->
+
+		<!-- Critical: disable fullscreen so status/title area is visible -->
 		<item name="android:windowFullscreen">false</item>
+		<item name="android:windowContentOverlay">@null</item>
+
+		<!-- Make sure we’re allowed to show an action bar via Toolbar -->
+		<item name="windowActionBar">false</item>
+		<item name="android:windowNoTitle">true</item>
 	</style>
 
 </resources>

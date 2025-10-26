@@ -2,15 +2,15 @@
 <!--For all properties see: https://aka.ms/android-menu-resource-->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<item android:id="@+id/MainMenu"
+	<item android:id="@+id/instruction"
 		  android:showAsAction="never"
-		  android:title="Main Menu"/>
-	<item android:id="@+id/Settings"
+		  android:title="Instructions"/>
+	<item android:id="@+id/settings"
 		  android:showAsAction="never"
 		  android:title="Settings"/>
-	<item android:id="@+id/Restart"
+	<item android:id="@+id/start_game"
 		  android:showAsAction="never"
-		  android:title="Restart"/>
+		  android:title="Start Game"/>
 </menu>
 
 <!-- Code to implement into Activity:

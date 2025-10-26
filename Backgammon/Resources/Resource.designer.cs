@@ -4723,7 +4723,7 @@ namespace Backgammon
 			public const int AppTheme = 2131689478;
 			
 			// aapt resource value: 0x7F0F0007
-			public const int AppTheme_WithActionBar = 2131689479;
+			public const int AppTheme_NoFullscreen_WithToolbar = 2131689479;
 			
 			// aapt resource value: 0x7F0F0008
 			public const int Base_AlertDialog_AppCompat = 2131689480;

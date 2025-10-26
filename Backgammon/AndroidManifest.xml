@@ -7,10 +7,11 @@
         android:icon="@mipmap/icon"
         android:theme="@style/AppTheme">
 
+        <!-- Main menu: NOT fullscreen, will show toolbar with menu -->
         <activity
             android:name=".MainActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.WithActionBar"
+            android:theme="@style/AppTheme.NoFullscreen.WithToolbar"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,21 +19,19 @@
             </intent-filter>
         </activity>
 
+        <!-- Other activities (keep fullscreen) -->
         <activity
             android:name=".Activities.GameActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".Activities.SettingsActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".Activities.InstructionsActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme" />
 
     </application>
-
 </manifest>

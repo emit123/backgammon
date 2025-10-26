@@ -1,67 +1,62 @@
 ﻿using Android.App;
 using Android.OS;
-using Android.Runtime;
 using AndroidX.AppCompat.App;
 using Android.Widget;
 using Android.Content;
 using Backgammon.Activities;
+using AndroidX.AppCompat.Widget; // Toolbar
 
 namespace Backgammon
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true,
-        ScreenOrientation = Android.Content.PM.ScreenOrientation.Landscape)]
+    [Activity(Label = "@string/app_name",
+              Theme = "@style/AppTheme.NoFullscreen.WithToolbar",
+              MainLauncher = true,
+              ScreenOrientation = Android.Content.PM.ScreenOrientation.Landscape)]
     public class MainActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
-            // Fullscreen
-            /*RequestWindowFeature(Android.Views.WindowFeatures.NoTitle);
-            Window.AddFlags(Android.Views.WindowManagerFlags.Fullscreen);
-            SupportActionBar?.Hide();*/
-
             SetContentView(Resource.Layout.activity_main);
+
+            // Set up Toolbar
+            var toolbar = FindViewById<Toolbar>(Resource.Id.topAppBar);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.Title = "Backgammon";
 
             var btnSingle = FindViewById<Button>(Resource.Id.btnSinglePlayer);
             var btnSettings = FindViewById<Button>(Resource.Id.btnSettings);
             var btnExit = FindViewById<Button>(Resource.Id.btnExit);
             var btnInstructions = FindViewById<Button>(Resource.Id.btnInstructions);
 
-
-
-            btnSingle.Click += (s, e) =>
-            {
-                var intent = new Intent(this, typeof(GameActivity));
-                StartActivity(intent);
-            };
-
-            btnSettings.Click += (s, e) =>
-            {
-                var intent = new Intent(this, typeof(SettingsActivity));
-                StartActivity(intent);
-            };
-
-            
-            btnInstructions.Click += (s, e) =>
-            {
-                Intent intent = new Intent(this, typeof(InstructionsActivity));
-                StartActivity(intent);
-            };
-
-
-            btnExit.Click += (s, e) =>
-            {
-                FinishAffinity();
-            };
-
-         
+            btnSingle.Click += (s, e) => StartActivity(new Intent(this, typeof(GameActivity)));
+            btnSettings.Click += (s, e) => StartActivity(new Intent(this, typeof(SettingsActivity)));
+            btnInstructions.Click += (s, e) => StartActivity(new Intent(this, typeof(InstructionsActivity)));
+            btnExit.Click += (s, e) => FinishAffinity();
         }
 
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        public override bool OnCreateOptionsMenu(Android.Views.IMenu menu)
         {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            MenuInflater.Inflate(Resource.Menu.menu1, menu); // Use your existing menu1.xml
+            return true;
+        }
+
+        public override bool OnOptionsItemSelected(Android.Views.IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.settings: // adjust IDs to your menu1.xml
+                    StartActivity(new Intent(this, typeof(SettingsActivity)));
+                    return true;
+                case Resource.Id.instruction:
+                    StartActivity(new Intent(this, typeof(InstructionsActivity)));
+                    return true;
+                case Resource.Id.start_game:
+                    StartActivity(new Intent(this, typeof(GameActivity)));
+                    return true;
+
+            }
+            return base.OnOptionsItemSelected(item);
         }
     }
 }
