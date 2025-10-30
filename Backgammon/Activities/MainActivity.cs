@@ -9,7 +9,6 @@ using AndroidX.AppCompat.Widget; // Toolbar
 namespace Backgammon
 {
     [Activity(Label = "@string/app_name",
-              Theme = "@style/AppTheme.NoFullscreen.WithToolbar",
               MainLauncher = true,
               ScreenOrientation = Android.Content.PM.ScreenOrientation.Landscape)]
     public class MainActivity : AppCompatActivity
@@ -20,7 +19,7 @@ namespace Backgammon
             SetContentView(Resource.Layout.activity_main);
 
             // Set up Toolbar
-            var toolbar = FindViewById<Toolbar>(Resource.Id.topAppBar);
+            var toolbar = FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.topAppBar);
             SetSupportActionBar(toolbar);
             SupportActionBar.Title = "Backgammon";
 

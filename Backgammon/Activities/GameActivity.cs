@@ -177,47 +177,7 @@ namespace Backgammon
         }
 
         //Menu
-        public override bool OnCreateOptionsMenu(Android.Views.IMenu menu)
-        {
-            MenuInflater.Inflate(Resource.Menu.menu1, menu);
-
-            return true;
-
-        }
-        public override bool OnOptionsItemSelected(Android.Views.IMenuItem item)
-
-        {
-
-            if (item.ItemId == Resource.Id.MainMenu)
-            {
-                var intent = new Intent(this, typeof(MainActivity));
-                StartActivity(intent);
-                Finish();
-
-                return true;
-
-            }
-
-            else if (item.ItemId == Resource.Id.Settings)
-            {
-                var intent = new Intent(this, typeof(SettingsActivity));
-                StartActivity(intent);
-                Finish();
-
-                return true;
-            }
-            else if (item.ItemId == Resource.Id.Restart)
-            {
-                var intent = new Intent(this, typeof(GameActivity));
-                StartActivity(intent);
-                Finish();
-
-                return true;
-            }
-
-            return base.OnOptionsItemSelected(item);
-
-        }
+        
         
 
     }
